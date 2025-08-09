@@ -18,7 +18,8 @@ const SearchBar = ({onSubmit}) => {
             type="text"
             id='city'
             onChange={(e) => setCity(e.target.value)} 
-            placeholder='Enter City (e.g Lagos)'
+            placeholder='Search for Cities (e.g Lagos)'
+            className='bg-gray-500'
             />
     </form>
   )
