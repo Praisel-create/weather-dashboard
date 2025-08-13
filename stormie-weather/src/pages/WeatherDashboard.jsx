@@ -7,7 +7,7 @@ import AirConditionBar from '../components/AirConditionBar';
 
 const WeatherDashboard = () => {
   return (
-    <div className='fixed w-full min-h-screen bg-gray-950'>
+    <div className='regular w-full min-h-screen bg-gray-950'>
       <div className="flex">
         {/* Fixed sidebar - now wider (w-64) */}
         <aside className="fixed h-full w-64 bg-gray-500 z-10">
@@ -20,13 +20,13 @@ const WeatherDashboard = () => {
             <SearchBar/>
           </div>
           
-          <div className='flex flex-col lg:flex-row pt-20'>
-            <div className='flex-1 flex flex-col gap-6'>
+          <div className='flex flex-col lg:flex-row'>
+            <div className='flex-1 flex flex-col gap-6 pl-10 pt-32'>
               <HourlyForecastBar/>
               <AirConditionBar/>
             </div>
             
-            <div className='flex-1'>
+            <div className='flex-1 pl-1'>
               <DailyForecastBar/>
             </div>
           </div>
