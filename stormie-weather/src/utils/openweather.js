@@ -94,4 +94,21 @@ export const fetchDate = async (cityName) => {
 
     const date = data.list[0].dt_txt;
     return { date: date };
-}
+};
+
+export const chanceOfRain = async (cityName) => {
+    const response = await fetch (
+        `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch POP");
+    const data = await response.json();
+    
+    if (!data.list || data.list.length === 0) {
+        throw new Error("POP not found");
+    }
+
+    const pop = data.list[0].pop
+    const rain = pop * 100 //Converting it to percentage of chance of rain
+    return {rain: rain}; //Math.round(pop * 100)
+    
+};
