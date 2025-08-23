@@ -1,22 +1,16 @@
-const API_KEY = 'b5da4e3b6344f0d3accf0a8101cd4188';
+const API_KEY = '3102ddc76fdf347b1c5ef20308b5f020';
 
-export const fetchTemp = async (cityName) => {
+export const fetchWeatherData = async (cityName) => {
     const response = await fetch (
         `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}`
     );
 
     if (!response.ok) throw new Error("Failed to fetch temperature");
     const data = await response.json();
-
-    if (!data.list || data.list.length === 0) {
-        throw new Error("Temperature not found");
-    }
-
-    const temp = data.list[0].main.temp;
-    return { temperature: temp };
+    return data;
 };
 
-export const fetchWindSpeed = async (cityName) => {
+/*export const fetchWindSpeed = async (cityName) => {
     const response = await fetch (
         `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}`
     );
@@ -111,4 +105,4 @@ export const chanceOfRain = async (cityName) => {
     const rain = pop * 100 //Converting it to percentage of chance of rain
     return {rain: rain}; //Math.round(pop * 100)
     
-};
+};**/

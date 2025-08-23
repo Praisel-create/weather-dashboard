@@ -2,33 +2,34 @@ import React, { useEffect, useState } from 'react'
 
 const SearchBar = ({onSubmit}) => {
     const [city, setCity] = useState("");
-    const [loading, setLoading] = useState(true);
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      setLoading(true);
-      onSubmit({ city }).finally(() => {
-        setLoading(false);
-        });
+      if (city.trim()) {
+        onSubmit({ city: city.trim() });
+        setCity(''); //CLear the input box after the submission
+      }
     };
 
-    useEffect(() => {
-      if (city) {
-        localStorage.setItem("city",city);
-      }
-    }, [city]);
+    const handleKeyDown = (e) => {
+      if (e.key == 'Enter') {
+        handleSubmit(e); //Reusing the submit logic
+        }
+      };
 
   return (
     <form onSubmit={handleSubmit}>
         <input 
             type="text"
             id='city'
+            value={city}
             onChange={(e) => setCity(e.target.value)} 
+            onKeyDown={handleKeyDown}
             placeholder='Search for Cities (e.g Lagos)'
-            className='p-4 w-full bg-gray-500 bg-gray-500 click:border-none'
+            className='p-4 w-full bg-gray-500 border-none'
             />
     </form>
-  )
-}
+  );
+};
 
 export default SearchBar;
